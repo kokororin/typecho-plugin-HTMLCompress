@@ -224,8 +224,13 @@ function html_minify_buffer($html)
 	{
 		require_once dirname(__FILE__) . '/absolute-to-relative-urls.php';
 	}
-	
-	return new HTML_Minify($html);
+	$config = Helper::options()->plugin('HTMLCompress');
+	$compress_css = $config->compress_css ? ($config->compress_css == 'yes' ? true : false) : true;
+	$compress_js = $config->compress_js ? ($config->compress_js == 'yes' ? true : false) : false;
+	$info_comment = $config->info_comment ? ($config->info_comment == 'yes' ? true : false) : false;
+	$remove_comments = $config->remove_comments ? ($config->remove_comments == 'yes' ? true : false) : true;
+	$shorten_urls = $config->shorten_urls ? ($config->shorten_urls == 'yes' ? true : false) : true;
+	return new HTML_Minify($html, $compress_css, $compress_js, $info_comment, $remove_comments, $shorten_urls);
 }
 
 
