@@ -1,0 +1,5 @@
+{
+    "require": {
+        "wyrihaximus/html-compress": "^1.2"
+    }
+}
